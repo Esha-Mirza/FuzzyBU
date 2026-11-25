@@ -1,0 +1,345 @@
+[
+ {
+  "n": 1,
+  "module": "M1",
+  "name": "Healthy student",
+  "inputs": {
+   "programme": "BBA / BEE / BS",
+   "cgpa": 3.2,
+   "probations": 0
+  },
+  "derived": {
+   "minimum": 2.0,
+   "margin": 1.2
+  },
+  "crisp": 9.285619047619045,
+  "label": "Safe",
+  "decision": "NO_ACTION",
+  "interpretation": "Standing = Safe (risk score 9.3 / 100).  Your CGPA 3.20 is 1.20 above the 2.0 minimum for BBA / BEE / BS.",
+  "advice": [
+   "You are in good standing. Your CGPA is comfortably above the 2.0 limit.",
+   "If you were on probation before, it is cleared and your probation count is reset to zero (5.5.4)."
+  ],
+  "fired": [
+   [
+    "R05",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 2,
+  "module": "M1",
+  "name": "Just above the limit after probation",
+  "inputs": {
+   "programme": "BBA / BEE / BS",
+   "cgpa": 2.2,
+   "probations": 1
+  },
+  "derived": {
+   "minimum": 2.0,
+   "margin": 0.2
+  },
+  "crisp": 26.91886936904155,
+  "label": "Watch",
+  "decision": "NO_ACTION",
+  "interpretation": "Standing = Watch (risk score 26.9 / 100).  Your CGPA 2.20 is 0.20 above the 2.0 minimum for BBA / BEE / BS.",
+  "advice": [
+   "You meet the 2.0 limit, so there is NO probation (5.5.1, 5.5.4).",
+   "But the margin is very small. One weak semester could push you below the limit - work on your CGPA now."
+  ],
+  "fired": [
+   [
+    "R06",
+    0.7499999999999999
+   ],
+   [
+    "R05",
+    0.1428571428571429
+   ]
+  ]
+ },
+ {
+  "n": 3,
+  "module": "M1",
+  "name": "Second consecutive probation",
+  "inputs": {
+   "programme": "BBA / BEE / BS",
+   "cgpa": 1.7,
+   "probations": 1
+  },
+  "derived": {
+   "minimum": 2.0,
+   "margin": -0.3
+  },
+  "crisp": 70.00000000000001,
+  "label": "Second-Probation",
+  "decision": "PROBATION_2",
+  "interpretation": "Standing = Second-Probation (risk score 70.0 / 100).  Your CGPA 1.70 is 0.30 below the 2.0 minimum for BBA / BEE / BS.",
+  "advice": [
+   "CGPA is still below the minimum: this is your 2nd CONSECUTIVE probation (5.5.5).",
+   "You must NOT register for a new course / semester without the prior approval of the Principal, through your HOD (5.5.5).",
+   "If you fail to reach the minimum in the next semester you will be DROPPED (5.5.3)."
+  ],
+  "fired": [
+   [
+    "R03",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 4,
+  "module": "M1",
+  "name": "Dropped after two probations",
+  "inputs": {
+   "programme": "BBA / BEE / BS",
+   "cgpa": 1.4,
+   "probations": 2
+  },
+  "derived": {
+   "minimum": 2.0,
+   "margin": -0.6
+  },
+  "crisp": 90.71438095238096,
+  "label": "Dropped",
+  "decision": "DROP",
+  "interpretation": "Standing = Dropped (risk score 90.7 / 100).  Your CGPA 1.40 is 0.60 below the 2.0 minimum for BBA / BEE / BS.",
+  "advice": [
+   "You failed to reach the minimum CGPA in the semester after two consecutive probations, so you are DROPPED from the programme (5.5.3).",
+   "You may return only as a NEW student after qualifying the entry test, on merit (5.5.6)."
+  ],
+  "fired": [
+   [
+    "R04",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 5,
+  "module": "M2",
+  "name": "Summa Cum Laude",
+  "inputs": {
+   "cgpa": 3.95,
+   "broken": []
+  },
+  "derived": {
+   "violations": 0
+  },
+  "crisp": 90.71438095238096,
+  "label": "Summa-Cum-Laude",
+  "decision": "SUMMA_CUM_LAUDE",
+  "interpretation": "Honour level = Summa-Cum-Laude (score 90.7 / 100) for CGPA 3.95.",
+  "advice": [
+   "You qualify for the top honour: SUMMA CUM LAUDE (CGPA 3.90 or above, clause 5.8.1).",
+   "Gold / Silver medals (5.7) depend on your rank in the batch, so this tool cannot decide them.",
+   "If this is your SEMESTER CGPA, you are on the Rector's Honours List (5.9)."
+  ],
+  "fired": [
+   [
+    "R12",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 6,
+  "module": "M2",
+  "name": "Magna Cum Laude",
+  "inputs": {
+   "cgpa": 3.85,
+   "broken": []
+  },
+  "derived": {
+   "violations": 0
+  },
+  "crisp": 70.00000000000001,
+  "label": "Magna-Cum-Laude",
+  "decision": "MAGNA_CUM_LAUDE",
+  "interpretation": "Honour level = Magna-Cum-Laude (score 70.0 / 100) for CGPA 3.85.",
+  "advice": [
+   "You qualify for MAGNA CUM LAUDE honours (CGPA 3.80 to below 3.90, clause 5.8.1).",
+   "You are 0.05 CGPA away from Summa Cum Laude.",
+   "Gold / Silver medals (5.7) depend on your rank in the batch, so this tool cannot decide them."
+  ],
+  "fired": [
+   [
+    "R11",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 7,
+  "module": "M2",
+  "name": "Near miss (3.55)",
+  "inputs": {
+   "cgpa": 3.55,
+   "broken": []
+  },
+  "derived": {
+   "violations": 0
+  },
+  "crisp": 29.999999999999996,
+  "label": "Near-Miss",
+  "decision": "NOT_ELIGIBLE",
+  "interpretation": "Honour level = Near-Miss (score 30.0 / 100) for CGPA 3.55.",
+  "advice": [
+   "Not eligible yet: the minimum is 3.60 (5.6.3) and you are 0.05 short. Honours are decided on the final CGPA at graduation, so there may still be time.",
+   "Gold / Silver medals (5.7) depend on your rank in the batch, so this tool cannot decide them."
+  ],
+  "fired": [
+   [
+    "R09",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 8,
+  "module": "M2",
+  "name": "High CGPA but disciplinary penalty",
+  "inputs": {
+   "cgpa": 3.95,
+   "broken": [
+    "5.6.6"
+   ]
+  },
+  "derived": {
+   "violations": 1
+  },
+  "crisp": 9.285619047619045,
+  "label": "Not-Eligible",
+  "decision": "NOT_ELIGIBLE",
+  "interpretation": "Honour level = Not-Eligible (score 9.3 / 100) for CGPA 3.95.",
+  "advice": [
+   "Baseline condition(s) not met: 5.6.6 (clause 5.6). Under 5.6 you are not eligible for any honour or award, whatever your CGPA.",
+   "Gold / Silver medals (5.7) depend on your rank in the batch, so this tool cannot decide them.",
+   "If this is your SEMESTER CGPA, you are on the Rector's Honours List (5.9)."
+  ],
+  "fired": [
+   [
+    "R07",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 9,
+  "module": "M3",
+  "name": "FAS holder, CGPA 2.55",
+  "inputs": {
+   "category": "Financial Assistance Scholarship (FAS)",
+   "cgpa": 2.55,
+   "load": null
+  },
+  "derived": {
+   "minimum": 2.5,
+   "margin": 0.05,
+   "load_used": 100.0
+  },
+  "crisp": 34.99999999999999,
+  "label": "At-Risk",
+  "decision": "RETAIN",
+  "interpretation": "Scholarship status = At-Risk (safety score 35.0 / 100).  GPA/CGPA 2.55 is 0.05 above the 2.50 minimum.",
+  "advice": [
+   "You may KEEP the scholarship for now, but you are on the edge.",
+   "Scholarship holders are reviewed EVERY semester (4.11, 4.12(d)) - protect your GPA.",
+   "Course load is not checked for this need-based scholarship (only merit scholarships need it, 4.4.3.5)."
+  ],
+  "fired": [
+   [
+    "R20",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 10,
+  "module": "M3",
+  "name": "Merit scholar, 60% load",
+  "inputs": {
+   "category": "Merit - Batch Topper (non-engineering)",
+   "cgpa": 3.9,
+   "load": 60.0
+  },
+  "derived": {
+   "minimum": 3.75,
+   "margin": 0.15,
+   "load_used": 60.0
+  },
+  "crisp": 9.285619047619045,
+  "label": "Suspended",
+  "decision": "WITHHOLD",
+  "interpretation": "Scholarship status = Suspended (safety score 9.3 / 100).  GPA/CGPA 3.90 is 0.15 above the 3.75 minimum.",
+  "advice": [
+   "Merit scholarships require the regular course load of the academic road map, so the scholarship cannot continue (4.4.3.5, 4.12(b)).",
+   "It can be restored once the requirement is met again (4.5.3(d), 4.9, 4.11)."
+  ],
+  "fired": [
+   [
+    "R23",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 11,
+  "module": "M3",
+  "name": "Advance Merit exactly at 3.50",
+  "inputs": {
+   "category": "Advance Merit (Board Topper / Top Ranker / A-Levels)",
+   "cgpa": 3.5,
+   "load": 100.0
+  },
+  "derived": {
+   "minimum": 3.5,
+   "margin": 0.0,
+   "load_used": 100.0
+  },
+  "crisp": 34.99999999999999,
+  "label": "At-Risk",
+  "decision": "RETAIN",
+  "interpretation": "Scholarship status = At-Risk (safety score 35.0 / 100).  GPA/CGPA 3.50 is 0.00 above the 3.50 minimum.",
+  "advice": [
+   "You may KEEP the scholarship for now, but you are on the edge.",
+   "Scholarship holders are reviewed EVERY semester (4.11, 4.12(d)) - protect your GPA and take the full regular course load (4.4.3.5)."
+  ],
+  "fired": [
+   [
+    "R20",
+    1.0
+   ]
+  ]
+ },
+ {
+  "n": 12,
+  "module": "M3",
+  "name": "FAS holder, CGPA 3.40",
+  "inputs": {
+   "category": "Financial Assistance Scholarship (FAS)",
+   "cgpa": 3.4,
+   "load": null
+  },
+  "derived": {
+   "minimum": 2.5,
+   "margin": 0.9,
+   "load_used": 100.0
+  },
+  "crisp": 90.71438095238096,
+  "label": "Secure",
+  "decision": "RETAIN",
+  "interpretation": "Scholarship status = Secure (safety score 90.7 / 100).  GPA/CGPA 3.40 is 0.90 above the 2.50 minimum.",
+  "advice": [
+   "Your GPA/CGPA is well above the minimum: the scholarship is SECURE for the coming review (4.5.2).",
+   "Course load is not checked for this need-based scholarship (only merit scholarships need it, 4.4.3.5)."
+  ],
+  "fired": [
+   [
+    "R22",
+    1.0
+   ]
+  ]
+ }
+]
